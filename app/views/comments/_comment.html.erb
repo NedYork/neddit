@@ -1,0 +1,19 @@
+<ul>
+<% if comment.child_comments.empty? %>
+<li>
+  <a href="<%= comment_url(comment) %>"><%= comment.content %></a>
+  by <%= comment.author.username %>
+</li>
+<% else %>
+<li>
+  <a href="<%= comment_url(comment) %>"><%= comment.content %></a>
+  by <%= comment.author.username %>
+</li>
+  <% comment.child_comments.each do |child_comment| %>
+    <% current_comment = comment %>
+    <% comment = child_comment %>
+      <%= render partial: "comments/comment", object: comment %>
+  <% end %>
+<% end %>
+
+</ul>

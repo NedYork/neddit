@@ -1,4 +1,17 @@
 <h1><a href="http://<%= @post.url %>"><%=@post.title%></a></h1>
-<%= @post.content %>
+
+
+
+<% @post.top_level_comments.each do |comment| %>
+  <%= render partial: "comments/comment", object: comment %>
+<% end %>
+
+<form action="<%= new_post_comment_url(@post)%>" method="get">
+  <button>New Comment</button>
+</form>
+<form action="<%= edit_post_url(@post)%>" method="get">
+  <button>Edit Post</button>
+</form>
+
 
 <a href="<%= subs_url %>">Back to subs</a>

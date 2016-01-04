@@ -9,5 +9,16 @@
   <% end %>
 </ul>
 
-<%= link_to("New Post", new_post_url) %><br>
-<a href="<%= subs_url %>">Back to all subs</a>
+<form action="<%= new_post_url %>" method="get">
+  <button>Create a new post</button>
+</form>
+
+<% if current_user.id == @sub.moderator_id %>
+  <form action="<%= edit_sub_url %>" method="get">
+    <button>Edit Sub</button>
+  </form>
+<% end %>
+
+<form action="<%= subs_url %>" method="get">
+  <button>Back to all subs</button>
+</form>

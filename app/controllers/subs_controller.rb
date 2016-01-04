@@ -53,7 +53,8 @@ class SubsController < ApplicationController
   private
 
   def ensure_user_is_mod
-    current_user.is_moderator?
+    @sub = Sub.find(params[:id])
+    current_user.id == @sub.moderator_id
   end
 
   def sub_params

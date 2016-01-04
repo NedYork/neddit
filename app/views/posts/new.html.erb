@@ -20,7 +20,9 @@
         <input
           type="checkbox"
           name="post[sub_ids][]"
-          value="<%= sub.id %>">
+          value="<%= sub.id %>"
+          <%= "checked" if @post.sub_ids.include?(sub.id) %>
+          >
         <%= sub.title %>
         <br>
     </label>

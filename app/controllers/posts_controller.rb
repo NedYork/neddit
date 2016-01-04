@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.author_id = current_user.id
     @post.sub_ids = post_params[:sub_ids]
-    
+
     if @post.save
       redirect_to post_url(@post)
     else
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
+    @post.top_level_comments
     render :show
   end
 
@@ -58,7 +58,8 @@ class PostsController < ApplicationController
   private
 
   def ensure_user_is_author
-    self.author_id == current_user.id
+    post = Post.find(params[:id])
+    post.author_id == current_user.id
   end
 
   def post_params

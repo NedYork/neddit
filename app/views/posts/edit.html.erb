@@ -1,7 +1,8 @@
 <h1>Edit This Post</h1>
 
-<form action="<% posts_url %>" method="post">
+<form action="<%= post_url(@post) %>" method="post">
   <%= auth %>
+  <input type="hidden" name="_method" value="patch">
 
   <label>Title:
     <input type="text" name="post[title]" value="<%= @post.title %>">
@@ -12,7 +13,22 @@
   <label>Content:
     <input type="text" name="post[content]" value="<%= @post.content %>">
   </label>
-
-  <button>Submit</button>
+  <br>
+  <b> Subs </b>
+  <br>
+  <input type="hidden" name="post[sub_ids][]" value="">
+  <% Sub.all.each do |sub| %>
+    <label>
+        <input
+          type="checkbox"
+          name="post[sub_ids][]"
+          value="<%= sub.id %>"
+          <%= "checked" if @post.sub_ids.include?(sub.id) %>
+          >
+        <%= sub.title %>
+        <br>
+    </label>
+  <% end %>
+  <button>Update</button>
 
 </form>
