@@ -1,5 +1,14 @@
 class PostsController < ApplicationController
 
+  before_action :ensure_user_is_author, only: [:edit, :update]
+
+
+  # Edit your 'Post' new/edit views to allow the user to select multiple Subs via checkboxes
+  #
+  # Structure your HTML form to upload an array of sub_ids nested under post
+  # Update the PostsController#post_params to accept an array of sub_ids
+
+
   def create
 
   end

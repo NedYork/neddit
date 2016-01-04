@@ -3,6 +3,7 @@ class Sub < ActiveRecord::Base
   validates :title, uniqueness: true
 
   has_many :posts
+  has_many :post_subs
 
   belongs_to(
     :moderator,
