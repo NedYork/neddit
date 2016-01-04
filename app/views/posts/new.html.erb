@@ -2,7 +2,6 @@
 
 <form action="<%= posts_url %>" method="post">
   <%= auth %>
-  <input type="hidden" name="post[sub_id]" value="<%= @sub_id %>">
   <label>Title:
     <input type="text" name="post[title]" value="<%= @post.title %>">
   </label>
@@ -12,7 +11,20 @@
   <label>Content:
     <input type="text" name="post[content]" value="<%= @post.content %>">
   </label>
-
+  <br>
+  <b> Subs </b>
+  <br>
+  <input type="hidden" name="post[sub_ids][]" value="">
+  <% Sub.all.each do |sub| %>
+    <label>
+        <input
+          type="checkbox"
+          name="post[sub_ids][]"
+          value="<%= sub.id %>">
+        <%= sub.title %>
+        <br>
+    </label>
+  <% end %>
   <button>Submit</button>
 
 </form>
