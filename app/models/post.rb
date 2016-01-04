@@ -8,6 +8,6 @@ class Post < ActiveRecord::Base
     foreign_key: :author_id
   )
 
-  has_many :post_subs
+  has_many :post_subs, dependent: :destroy
 
 end
